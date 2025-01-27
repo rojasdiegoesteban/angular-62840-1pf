@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from './models';
 import { generateRandomString } from '../../../../shared/utils';
+import { MatDialog } from '@angular/material/dialog';
+import { StudentDialogFormComponent } from './components/student-dialog-form/student-dialog-form.component';
 
 @Component({
   selector: 'app-students',
@@ -12,7 +14,9 @@ import { generateRandomString } from '../../../../shared/utils';
 })
 export class StudentsComponent {
 
-  studentForm: FormGroup;
+  constructor(private dialog: MatDialog, private fb: FormBuilder) { }
+
+
   displayedColumns: string[] = ['id', 'name', 'actions'];
   students: Student[] = [
     {
@@ -25,47 +29,6 @@ export class StudentsComponent {
   editingStudentId: string | null = null;
 
 
-  constructor(private fb: FormBuilder) {
-    this.studentForm = this.fb.group({
-      name: [null, [Validators.required]],
-      lastName: [null, [Validators.required]]
-    });
-  }
-
-  onSubmit() {
-    if (this.studentForm.invalid) {
-      this.studentForm.markAllAsTouched();
-    } else {
-
-      if (!!this.editingStudentId) {
-        //editar
-        this.students = this.students.map((student) =>
-          student.id === this.editingStudentId
-            ? { ...student, ...this.studentForm.value }
-            : student);
-
-        this.editingStudentId = null;
-      } else {
-        //crear
-        this.students = [
-          ...this.students,
-          {
-            id: generateRandomString(6),
-            ...this.studentForm.value
-          }
-        ];
-        /*this.students.push({
-          id: generateRandomString(6),
-          ...this.studentForm.value
-        }); */
-      }
-
-    }
-
-    this.studentForm.reset();
-
-  };
-
   onDelete(id: string) {
     if (confirm('Esta seguro que desea eliminar el registro?')) {
       this.students = this.students.filter(student => student.id !== id);
@@ -73,17 +36,41 @@ export class StudentsComponent {
   };
 
   onEdit(student: Student): void {
-    console.log('Se va a editar el estudiante', student);
-
     this.editingStudentId = student.id;
 
-    this.studentForm.patchValue({
-      name: student.name,
-      lastName: student.lastName
+    this.dialog.open(StudentDialogFormComponent, {
+      data: student
+    }).afterClosed().subscribe({
+      next: (valorFormulario) => {
+        if (!!valorFormulario) {
+          //Editar
+          this.students = this.students.map((student) =>
+            student.id === this.editingStudentId
+              ? { ...student, ...valorFormulario }
+              : student
+          );
+          this.editingStudentId = null;
+        }
+      }
     });
+  }
 
 
-
-  };
+  onCreateStudent(): void {
+    this.dialog.open(StudentDialogFormComponent).afterClosed().subscribe({
+      next: (valorFormulario) => {
+        if (!!valorFormulario) {
+          //Crear
+          this.students = [
+            ...this.students,
+            {
+              id: generateRandomString(6),
+              ...valorFormulario
+            }
+          ]
+        }
+      }
+    });
+  }
 
 }
