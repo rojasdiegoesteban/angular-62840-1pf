@@ -3,15 +3,8 @@
 <mat-drawer-container class="example-container" autosize>
     <!-- inicio menu lateral -->
     <mat-drawer #drawer class="example-sidenav" mode="side">
-      <!-- <p>Auto-resizing sidenav</p>
-      @if (showFiller) {
-        <p>Lorem, ipsum dolor sit amet consectetur.</p>
-      }
-      <button (click)="showFiller = !showFiller" mat-raised-button>
-        Toggle extra text
-      </button> -->
 
-      <mat-list role="list" style="width:240px;">
+<!--       <mat-list role="list" style="width:240px;">
         <mat-list-item >
           <mat-icon matListItemIcon>home</mat-icon>
           <div matListItemTitle>Inicio</div>
@@ -28,7 +21,9 @@
           <mat-icon matListItemIcon>exit_to_app</mat-icon>
           <div matListItemTitle>Cerrar Sesión</div>
         </mat-list-item>
-      </mat-list>
+      </mat-list> -->
+
+      <app-nav-menu />
 
     </mat-drawer>
     <!-- fin menu lateral -->
@@ -40,7 +35,8 @@
 
       <main style="padding: 1rem;">
         <div class="container">
-          <app-students />
+          <!-- <app-students /> -->
+           <router-outlet />
         </div>
       </main>
 

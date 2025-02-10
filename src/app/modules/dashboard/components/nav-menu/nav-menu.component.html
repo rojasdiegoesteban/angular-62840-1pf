@@ -1,0 +1,14 @@
+<mat-nav-list>
+    <a routerLink="home" mat-list-item 
+    routerLinkActive #inicioLink="routerLinkActive" 
+    [activated]="inicioLink.isActive">
+        <mat-icon matListItemIcon>home</mat-icon>
+        <div matListItemTitle>Inicio</div>
+    </a>
+    <a routerLink="students" mat-list-item
+    routerLinkActive #estudiantesLink="routerLinkActive"
+    [activated]="estudiantesLink.isActive">
+        <mat-icon matListItemIcon>person</mat-icon>
+        <div matListItemTitle>Estudiantes</div>
+    </a>
+</mat-nav-list>

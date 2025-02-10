@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FullNamePipe } from './pipes/full-name.pipe';
 import { TitleSizeDirective } from './directives/title-size.directive';
+import {MatListModule} from '@angular/material/list';
 
 
 
@@ -15,7 +16,8 @@ import { TitleSizeDirective } from './directives/title-size.directive';
   ],
   exports: [
     FullNamePipe,
-    TitleSizeDirective
+    TitleSizeDirective,
+    MatListModule
   ]
 })
 export class SharedModule { }
