@@ -1,0 +1,12 @@
+<h1>Cursos</h1>
+
+@if (isLoading) {
+    <mat-spinner />
+} @else {
+
+    <button (click)="openFormDialog()" mat-flat-button color="primary">
+        <mat-icon>add</mat-icon> Crear curso
+    </button>
+
+    <app-course-table [dataSource]="dataSource" (delete)="onDelete($event)" (edit)="openFormDialog($event)" />
+}
