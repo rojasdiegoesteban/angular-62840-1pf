@@ -25,10 +25,7 @@ import { SharedModule } from '../../shared/shared.module';
     CommonModule,
     DashboardRoutingModule,
     MatSidenavModule,
-    MatButtonModule,
     MatToolbarModule,
-    MatIconModule,
-    MatListModule,
     StudentsModule,
     SharedModule
   ],

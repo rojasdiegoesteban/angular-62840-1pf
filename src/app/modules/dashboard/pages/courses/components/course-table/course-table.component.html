@@ -23,10 +23,12 @@
           mat-icon-button color="accent">
               <mat-icon>visibility</mat-icon>
           </button>  
-          <button (click)="edit.emit(element)" mat-icon-button color="accent">
+          <button *ngIf="isAdmin$ | async" (click)="edit.emit(element)" 
+          mat-icon-button color="accent">
               <mat-icon>edit</mat-icon>
           </button>  
-          <button (click)="delete.emit(element.id)" mat-icon-button color="warn">
+          <button *ngIf="isAdmin$ | async" (click)="delete.emit(element.id)" 
+          mat-icon-button color="warn">
               <mat-icon>delete</mat-icon>
           </button>
       </td>
