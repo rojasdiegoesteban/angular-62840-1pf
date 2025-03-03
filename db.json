@@ -1,0 +1,29 @@
+{
+  "courses": [
+    {
+      "id": "ef86",
+      "name": "Photoshop",
+      "price": 4000
+    },
+    {
+      "id": "57d6",
+      "name": "Javascript"
+    },
+    {
+      "id": "a1b8",
+      "name": "net framework"
+    }
+  ],
+  "teachers": [
+    {
+      "id": "a1b8",
+      "name": "John Roe",
+      "courseId": "a1b8"
+    },
+    {
+      "id": "57d6",
+      "name": "Jane Smith",
+      "courseId": "57d6"
+    }
+  ]
+}
